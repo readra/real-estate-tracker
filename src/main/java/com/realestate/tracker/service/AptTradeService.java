@@ -6,7 +6,7 @@ import com.realestate.tracker.repository.AptTradeRepository;
 import com.realestate.tracker.service.external.OpenApiService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.Cacheable;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,7 +31,6 @@ public class AptTradeService {
     
     private final AptTradeRepository aptTradeRepository;
     private final OpenApiService openApiService;
-    private final RedisService redisService;
     
     /**
      * 아파트 매매 실거래 목록 조회
@@ -39,7 +38,6 @@ public class AptTradeService {
      * @param searchCondition 검색 조건
      * @return 아파트 매매 실거래 목록
      */
-    @Cacheable(value = "aptTrades", key = "#searchCondition.getRedisKey(#searchCondition.startYearMonth)")
     public Page<AptTrade> findAptTrades(AptTradeSearchCondition searchCondition) {
         // 검색 조건 유효성 검사
         if (!searchCondition.isValid()) {
@@ -104,10 +102,6 @@ public class AptTradeService {
                 // DB 저장
                 if (!monthlyTrades.isEmpty()) {
                     allTrades.addAll(aptTradeRepository.saveAll(monthlyTrades));
-                    
-                    // Redis 캐시 저장
-                    String redisKey = searchCondition.getRedisKey(current);
-                    redisService.setValues(redisKey, monthlyTrades, 24); // 24시간 캐시
                 }
                 
                 current = current.plusMonths(1);

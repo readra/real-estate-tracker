@@ -5,7 +5,6 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 
 /**
  * 아파트 매매 실거래 검색 조건 DTO
@@ -51,31 +50,6 @@ public class AptTradeSearchCondition {
     private Double maxExclusiveArea;  // 최대 전용면적
     private Integer minBuildingYear;  // 최소 건축년도
     private Integer maxBuildingYear;  // 최대 건축년도
-    
-    /**
-     * Redis 캐시 키 생성
-     */
-    public String getRedisKey(YearMonth yearMonth) {
-        StringBuilder key = new StringBuilder("apt:trade:");
-        
-        if (lawdCode != null && !lawdCode.isEmpty()) {
-            key.append(lawdCode).append(":");
-        }
-        
-        if (yearMonth != null) {
-            key.append(yearMonth.format(DateTimeFormatter.ofPattern("yyyyMM"))).append(":");
-        }
-        
-        if (startTransactionAmount != null) {
-            key.append("min:").append(startTransactionAmount).append(":");
-        }
-        
-        if (endTransactionAmount != null) {
-            key.append("max:").append(endTransactionAmount).append(":");
-        }
-        
-        return key.toString();
-    }
     
     /**
      * 검색 조건 유효성 검사

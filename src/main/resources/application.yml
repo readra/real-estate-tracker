@@ -24,17 +24,6 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.H2Dialect
-        
-  redis:
-    host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6379}
-    password: ${REDIS_PASSWORD:}
-    
-  cache:
-    type: redis
-    redis:
-      time-to-live: 86400000  # 24 hours in milliseconds
-      cache-null-values: false
 
 server:
   port: 8080
