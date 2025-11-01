@@ -79,4 +79,3 @@ frontend/.env.local
 # Database
 *.db
 *.sqlite
-data/
