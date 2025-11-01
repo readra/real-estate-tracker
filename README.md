@@ -8,7 +8,7 @@
 - Java 17
 - Spring Boot 3.2.0
 - Spring Data JPA
-- PostgreSQL / H2
+- H2 Database
 - Spring Security
 
 ### Frontend
@@ -22,7 +22,6 @@
 ### 필요 조건
 - JDK 17+
 - Node.js 18+
-- PostgreSQL (선택사항)
 
 ### 설치 및 실행
 
