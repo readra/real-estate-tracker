@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import {
   Box,
   Button,
-  Grid,
   TextField,
   Paper,
   Typography,
+  Stack,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchCondition } from '../types';
@@ -51,20 +51,18 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch, loading = false }) =>
       </Typography>
       
       <form onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              required
-              label="지역 코드"
-              value={lawdCode}
-              onChange={(e) => setLawdCode(e.target.value)}
-              placeholder="예: 11110 (서울 종로구)"
-              helperText="5자리 법정동 코드 입력"
-            />
-          </Grid>
+        <Stack spacing={2}>
+          <TextField
+            fullWidth
+            required
+            label="지역 코드"
+            value={lawdCode}
+            onChange={(e) => setLawdCode(e.target.value)}
+            placeholder="예: 11110 (서울 종로구)"
+            helperText="5자리 법정동 코드 입력"
+          />
 
-          <Grid item xs={12} sm={3}>
+          <Box sx={{ display: 'flex', gap: 2 }}>
             <TextField
               fullWidth
               type="month"
@@ -73,9 +71,6 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch, loading = false }) =>
               onChange={(e) => setStartYearMonth(e.target.value)}
               InputLabelProps={{ shrink: true }}
             />
-          </Grid>
-
-          <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
               type="month"
@@ -84,9 +79,9 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch, loading = false }) =>
               onChange={(e) => setEndYearMonth(e.target.value)}
               InputLabelProps={{ shrink: true }}
             />
-          </Grid>
+          </Box>
 
-          <Grid item xs={12} sm={6}>
+          <Box sx={{ display: 'flex', gap: 2 }}>
             <TextField
               fullWidth
               type="number"
@@ -95,9 +90,6 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch, loading = false }) =>
               onChange={(e) => setMinAmount(e.target.value)}
               placeholder="예: 50000"
             />
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               type="number"
@@ -106,28 +98,26 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch, loading = false }) =>
               onChange={(e) => setMaxAmount(e.target.value)}
               placeholder="예: 100000"
             />
-          </Grid>
+          </Box>
 
-          <Grid item xs={12}>
-            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end' }}>
-              <Button
-                variant="outlined"
-                onClick={handleReset}
-                disabled={loading}
-              >
-                초기화
-              </Button>
-              <Button
-                type="submit"
-                variant="contained"
-                startIcon={<SearchIcon />}
-                disabled={loading}
-              >
-                {loading ? '검색 중...' : '검색'}
-              </Button>
-            </Box>
-          </Grid>
-        </Grid>
+          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end' }}>
+            <Button
+              variant="outlined"
+              onClick={handleReset}
+              disabled={loading}
+            >
+              초기화
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              startIcon={<SearchIcon />}
+              disabled={loading}
+            >
+              {loading ? '검색 중...' : '검색'}
+            </Button>
+          </Box>
+        </Stack>
       </form>
     </Paper>
   );
