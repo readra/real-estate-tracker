@@ -20,6 +20,8 @@ const SearchPage: React.FC = () => {
     setCurrentCondition(condition);
     setPage(0);
 
+    console.log('Search request:', condition);
+
     try {
       const response = await searchAptTrades({
         ...condition,
@@ -27,11 +29,14 @@ const SearchPage: React.FC = () => {
         size,
       });
 
+      console.log('Search response:', response);
       setTrades(response.content);
       setTotalElements(response.totalElements);
     } catch (err: any) {
+      console.error('Search error:', err);
+      console.error('Error response:', err.response);
       setError(
-        err.response?.data?.message || '검색 중 오류가 발생했습니다.'
+        err.response?.data?.message || err.message || '검색 중 오류가 발생했습니다.'
       );
       setTrades([]);
       setTotalElements(0);

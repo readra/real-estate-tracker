@@ -35,10 +35,10 @@ logging:
     
 # Open API ??
 openapi:
-  key: ${OPENAPI_KEY:}  # ??????? API ?
+  key: "%2F7MeSbybd07ucEmj8BF72GmhsZV9KbqQ2BTpylshbKDKGNzSktYgCYvTOkvKuZCxWc8WHA5B3ecQ9qld7%2BGjOw%3D%3D"
   apt-trade:
-    url: http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev
-    
+    url: http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTrade
+
 # Swagger ??
 springdoc:
   swagger-ui:

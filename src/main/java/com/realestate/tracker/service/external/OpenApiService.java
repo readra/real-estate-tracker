@@ -37,7 +37,7 @@ public class OpenApiService {
     @Value("${openapi.key:}")
     private String serviceKey;
     
-    @Value("${openapi.apt-trade.url:http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev}")
+    @Value("${openapi.apt-trade.url:http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTrade}")
     private String aptTradeApiUrl;
     
     private final WebClient webClient = WebClient.builder().build();
@@ -81,7 +81,7 @@ public class OpenApiService {
      * API URL 생성
      */
     private String buildApiUrl(String lawdCode, String dealYmd) throws Exception {
-        StringBuilder urlBuilder = new StringBuilder(aptTradeApiUrl);
+        StringBuilder urlBuilder = new StringBuilder("http://openapi.molit.go.kr:8081/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTrade");
         
         // Decode service key if it's Base64 encoded
         String decodedServiceKey = serviceKey;
@@ -91,9 +91,9 @@ public class OpenApiService {
             // Not Base64 encoded, use as is
         }
         
-        urlBuilder.append("?serviceKey=").append(URLEncoder.encode(decodedServiceKey, StandardCharsets.UTF_8));
-        urlBuilder.append("&pageNo=1");
-        urlBuilder.append("&numOfRows=1000");
+        urlBuilder.append("?serviceKey=").append("%2F7MeSbybd07ucEmj8BF72GmhsZV9KbqQ2BTpylshbKDKGNzSktYgCYvTOkvKuZCxWc8WHA5B3ecQ9qld7%2BGjOw%3D%3D");
+//        urlBuilder.append("&pageNo=1");
+//        urlBuilder.append("&numOfRows=1000");
         urlBuilder.append("&LAWD_CD=").append(lawdCode);
         urlBuilder.append("&DEAL_YMD=").append(dealYmd);
         
