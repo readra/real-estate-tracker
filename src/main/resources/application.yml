@@ -33,13 +33,13 @@ logging:
     com.realestate.tracker: DEBUG
     org.springframework.web: DEBUG
     
-# Open API ??
+# Open API 설정 (공공데이터포털)
 openapi:
-  key: "%2F7MeSbybd07ucEmj8BF72GmhsZV9KbqQ2BTpylshbKDKGNzSktYgCYvTOkvKuZCxWc8WHA5B3ecQ9qld7%2BGjOw%3D%3D"
+  key: ${OPENAPI_KEY:}  # 공공데이터포털에서 발급받은 인증키 (URL 인코딩 필요)
   apt-trade:
-    url: http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTrade
+    url: http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev
 
-# Swagger ??
+# Swagger 설정
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
